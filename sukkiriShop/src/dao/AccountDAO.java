@@ -45,4 +45,26 @@ public class AccountDAO {
       }
       return account;
     }
+
+	public int create(Account account) {
+		int num = 0;
+		try(Connection conn = DriverManager.getConnection(JDBC_URL,DB_USER,DB_PASS)){
+
+		// SELECT文を準備
+		String sql = "INSERT INTO ACCOUNT VALUES(?,?,?,?,?)";
+	    PreparedStatement pStmt = conn.prepareStatement(sql);
+
+	    pStmt.setString(1, account.getUserId());
+	    pStmt.setString(2, account.getPass());
+	    pStmt.setString(3, account.getMail());
+	    pStmt.setString(4, account.getName());
+	    pStmt.setInt(5, account.getAge());
+
+		num = pStmt.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return num;
+	}
 }

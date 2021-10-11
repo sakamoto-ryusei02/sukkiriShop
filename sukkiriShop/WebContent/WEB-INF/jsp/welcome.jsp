@@ -8,7 +8,7 @@
 <body>
 <ul>
 <li><a href="/sukkiriShop/LoginServlet">ログイン</a></li>
-<li>ユーザー登録</li>
+<li><a href="/sukkiriShop/ResisterServlet">ユーザー登録</a></li>
 </ul>
 </body>
 </html>

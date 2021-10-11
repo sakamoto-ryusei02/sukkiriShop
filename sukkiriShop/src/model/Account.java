@@ -3,7 +3,7 @@ package model;
 import java.io.Serializable;
 
 public class Account implements Serializable {
-	private String userid; //ユーザー名
+	private String userid; //ユーザーid
 	private String pass; //パスワード
 	private String mail; //メールアドレス
 	private String name; //名前
@@ -39,6 +39,26 @@ public class Account implements Serializable {
 
 	public int getAge() {
 		return age;
+	}
+
+	public void setUserid(String userid) {
+		this.userid = userid;
+	}
+
+	public void setPass(String pass) {
+		this.pass = pass;
+	}
+
+	public void setMail(String mail) {
+		this.mail = mail;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public void setAge(int age) {
+		this.age = age;
 	}
 
 }
