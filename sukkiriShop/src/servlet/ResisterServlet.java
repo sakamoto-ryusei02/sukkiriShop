@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import model.Account;
+import model.ResisterLogic;
 
 @WebServlet("/ResisterServlet")
 public class ResisterServlet extends HttpServlet {
@@ -34,10 +35,12 @@ public class ResisterServlet extends HttpServlet {
 		Account newaccount = new Account();
 		try {
 		newaccount.setUserid(userid);
-		newaccount.setName(name);
-		newaccount.setAge(Integer.parseInt(age));
 		newaccount.setPass(pass);
 		newaccount.setMail(mail);
+		newaccount.setName(name);
+		newaccount.setAge(Integer.parseInt(age));
+		ResisterLogic lo = new ResisterLogic();
+		lo.execute(newaccount);
 
 		request.setAttribute("newaccount", newaccount);
 
@@ -46,6 +49,9 @@ public class ResisterServlet extends HttpServlet {
 		    dispatcher.forward(request, response);
 		}catch(NumberFormatException e) {
 			System.out.println("もう一度やり直してください");
+			RequestDispatcher dispatcher = request.getRequestDispatcher(
+			        "/WEB-INF/jsp/ResisterNG.jsp");
+			    dispatcher.forward(request, response);
 		}
 	}
 

@@ -46,7 +46,7 @@ public class AccountDAO {
       return account;
     }
 
-	public int create(Account account) {
+	public boolean create(Account account) {
 		int num = 0;
 		try(Connection conn = DriverManager.getConnection(JDBC_URL,DB_USER,DB_PASS)){
 
@@ -61,10 +61,13 @@ public class AccountDAO {
 	    pStmt.setInt(5, account.getAge());
 
 		num = pStmt.executeUpdate();
-
+		if (num != 1) {
+			return false;
+		}
 		} catch (SQLException e) {
 			e.printStackTrace();
+			return false;
 		}
-		return num;
+		return true;
 	}
 }
